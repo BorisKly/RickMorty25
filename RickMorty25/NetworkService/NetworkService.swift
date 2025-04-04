@@ -31,17 +31,22 @@ class NetworkService {
     }
 
     private func formUrl(endpoint: NetworkApiMethods,
-                         settings: [String: Any]? = nil,
-                         data: [String: Any]? = nil) -> String {
+                         pathSuffics: String? = nil,
+                         queryParams: [String: String]? = nil) -> String {
 
         var components = URLComponents()
         components.scheme = scheme
         components.host = host
-        components.path = endpoint.path
 
-        let queryParams = data?["queryParams"] as? [String: String] ?? [:]
-        components.queryItems = queryParams.map { URLQueryItem(name: $0.key, value: $0.value) }
+        var path = endpoint.path
+        if let suffics = pathSuffics {
+            path += "/\(suffics)"
+        }
+        components.path = path
 
+        if let queryParams = queryParams {
+            components.queryItems = queryParams.map { URLQueryItem(name: $0.key, value: $0.value) }
+        }
         return components.url?.absoluteString ?? ""
     }
 
@@ -56,7 +61,6 @@ class NetworkService {
             completion(.failure(NetworkError.invalidURL))
             return
         }
-        print(url)
         var request = URLRequest(url: url)
         request.httpMethod = method
         request.allHTTPHeaderFields = headers ?? getHeader()
@@ -75,7 +79,6 @@ class NetworkService {
                 completion(.failure(NetworkError.decodingError))
                 return
             }
-            print("httpResponse.statusCode\(httpResponse.statusCode)")
             let contentType = httpResponse.allHeaderFields["Content-Type"] as? String ?? ""
             if contentType.contains("application/json"), let data = data {
                 do {
@@ -110,10 +113,27 @@ class NetworkService {
                     completion: completion)
     }
 
-    func getCharacters(data: [String: Any]?,
-                       settings: [String: Any]?,
+    func getCharacters(queryParams: [String: String]? = nil,
                        completion: @escaping (Result<NetworkResponse, NetworkError>) -> Void) {
-        let url = formUrl(endpoint: .character, settings: settings, data: data)
+        let url = formUrl(endpoint: .character, queryParams: queryParams)
+        let headers = getHeader()
+        GET(url: url, headers: headers, completion: completion)
+    }
+
+    func getLocation(id: Int,
+                     queryParams: [String: String]? = nil,
+                     completion: @escaping (Result<NetworkResponse, NetworkError>) -> Void) {
+        let url = formUrl(endpoint: .location, pathSuffics: String(id), queryParams: queryParams)
+        print(url)
+        let headers = getHeader()
+        GET(url: url, headers: headers, completion: completion)
+    }
+
+    func getEpisode(id: Int,
+                     queryParams: [String: String]? = nil,
+                     completion: @escaping (Result<NetworkResponse, NetworkError>) -> Void) {
+        let url = formUrl(endpoint: .episode, pathSuffics: String(id), queryParams: queryParams)
+        print(url)
         let headers = getHeader()
         GET(url: url, headers: headers, completion: completion)
     }

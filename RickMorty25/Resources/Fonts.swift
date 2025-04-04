@@ -8,7 +8,7 @@
 import UIKit
 
 struct Fonts {
-    static var customBody1 =  UIFont.customFont(weight: .regular, size: 16, lineHeight: 24)
-    static var customBody2 =  UIFont.customFont(weight: .regular, size: 18, lineHeight: 24)
-    static var customBody3 =  UIFont.customFont(weight: .regular, size: 14, lineHeight: 20)
+    static var customMedium =  UIFont.customFont(weight: .regular, size: 16, lineHeight: 24)
+    static var customHuge =  UIFont.customFont(weight: .regular, size: 18, lineHeight: 24)
+    static var customSmall =  UIFont.customFont(weight: .regular, size: 14, lineHeight: 20)
 }

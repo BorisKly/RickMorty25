@@ -10,8 +10,8 @@ import SnapKit
 
 class CharactersListViewController: UIViewController {
 
-    let viewModel = CharactersListViewModel()
-    var activityIndicator = UIActivityIndicatorView()
+    let viewModel: CharactersListViewModel
+    let activityIndicator = UIActivityIndicatorView()
 
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -19,6 +19,15 @@ class CharactersListViewController: UIViewController {
         tableView.register(CharactersTableViewCell.self, forCellReuseIdentifier: CharactersTableViewCell.identifier)
         return tableView
     }()
+
+    init(viewModel: CharactersListViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,10 +44,16 @@ class CharactersListViewController: UIViewController {
             make.edges.equalToSuperview()
         }
         setupActivityIndicator()
+
+        viewModel.onCharacterSelected = {[weak self] character in
+            let characterViewModel = CharacterViewModel(character: character)
+            let characterViewController = CharacterViewController(viewModel: characterViewModel)
+            self?.navigationController?.pushViewController(characterViewController, animated: true)
+        }
     }
 
     private func setupActivityIndicator() {
-        activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.style = .large
         activityIndicator.color = .red
 
         view.addSubview(activityIndicator)
@@ -56,7 +71,7 @@ extension CharactersListViewController: UITableViewDelegate, UITableViewDataSour
         return viewModel.characters.count
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100 
+        return 100
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -67,7 +82,6 @@ extension CharactersListViewController: UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let character = viewModel.characters[indexPath.row]
-        print("Selected user: \(character.name)")
+        viewModel.didSelectCharacter(at: indexPath.row)
     }
 }

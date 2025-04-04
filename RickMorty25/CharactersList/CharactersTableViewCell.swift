@@ -21,21 +21,42 @@ class CharactersTableViewCell: UITableViewCell {
         return imageView
     }()
 
-    private let nameLabel: UILabel = {
+    var nameLabel: UILabel = {
         let label = UILabel()
         label.text = "name"
-        label.font = Fonts.customBody2
+        label.font = Fonts.customHuge
         label.textColor = .txtColor
         return label
     }()
 
+    var statusLabel: UILabel = {
+        let label = UILabel()
+        label.text = "status"
+        label.font = Fonts.customSmall
+        label.textColor = .txtColor
+        return label
+    }()
+
+    var speciesLabel: UILabel = {
+        let label = UILabel()
+        label.text = "status"
+        label.font = Fonts.customSmall
+        label.textColor = .txtColor
+        return label
+    }()
+
+    var statusIndicator = UIView()
+
+    private let infoStack = UIStackView()
+    private var statusStack = UIStackView()
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-    
+
         contentView.backgroundColor = .backColor
         contentView.addSubview(profileImageView)
-        contentView.addSubview(nameLabel)
-
+        contentView.addSubview(infoStack)
+        setupStatusIndicator()
         setupView()
     }
 
@@ -45,47 +66,53 @@ class CharactersTableViewCell: UITableViewCell {
 
     func configure(with character: CharacterResponse) {
         nameLabel.text = character.name
-        setCharacterImage(from: character.image)
-       }
+        speciesLabel.text = character.species
+        statusLabel.text = character.status
 
-    private func setCharacterImage(from urlString: String) {
-        print(#function)
-        guard let url = URL(string: urlString) else {
-            print("wrong URL")
-            return
+        if statusLabel.text?.lowercased() == "alive" {
+            statusIndicator.backgroundColor = .successColor
+        } else if statusLabel.text?.lowercased() == "dead" {
+            statusIndicator.backgroundColor = .alertColor
+        } else {
+            statusIndicator.backgroundColor = .systemGray
         }
 
-        URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
-            if let error = error {
-                print("Error loading: \(error)")
-                return
-            }
-
-            guard let data = data, let image = UIImage(data: data) else {
-                print("Imposible create image")
-                return
-            }
-
-            DispatchQueue.main.async {
-                self?.profileImageView.image = image
-            }
+        loadImage(from: character.image) { [weak self] image in
+            self?.profileImageView.image = image
         }
-        .resume()
     }
 
     private func setupView() {
-        addSubview(profileImageView)
-        addSubview(nameLabel)
+        infoStack.axis = .vertical
+        infoStack.spacing = 8
+        infoStack.alignment = .leading
+        infoStack.addArrangedSubview(nameLabel)
+        infoStack.addArrangedSubview(statusStack)
+
+        statusStack.axis = .horizontal
+        statusStack.spacing = 8
+        statusStack.alignment = .center
+        statusStack.addArrangedSubview(statusIndicator)
+        statusStack.addArrangedSubview(statusLabel)
+        statusStack.addArrangedSubview(speciesLabel)
 
         profileImageView.snp.makeConstraints { make in
             make.size.equalTo(100)
             make.top.equalToSuperview().offset(24)
             make.left.equalToSuperview().offset(16)
         }
-        nameLabel.snp.makeConstraints { make in
+        infoStack.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(24)
             make.left.equalTo(profileImageView.snp.right).offset(16)
             make.right.equalToSuperview().offset(-24)
+        }
+    }
+    func setupStatusIndicator() {
+        statusIndicator.translatesAutoresizingMaskIntoConstraints = false
+        statusIndicator.layer.cornerRadius = 6
+        statusIndicator.clipsToBounds = true
+        statusIndicator.snp.makeConstraints { make in
+            make.width.height.equalTo(12)
         }
     }
 }
