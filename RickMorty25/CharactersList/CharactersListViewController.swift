@@ -48,26 +48,26 @@ class CharactersListViewController: UIViewController {
             make.centerY.equalToSuperview().inset(180)
         }
     }
-
 }
 
 extension CharactersListViewController: UITableViewDelegate, UITableViewDataSource {
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.characters.count
     }
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100 
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let character = viewModel.characters[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: CharactersTableViewCell.identifier, for: indexPath) as! CharactersTableViewCell
         cell.configure(with: character)
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let character = viewModel.characters[indexPath.row]
         print("Selected user: \(character)")
     }
-    
-    
 }
