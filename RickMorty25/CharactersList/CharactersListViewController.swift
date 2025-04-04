@@ -68,6 +68,6 @@ extension CharactersListViewController: UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let character = viewModel.characters[indexPath.row]
-        print("Selected user: \(character)")
+        print("Selected user: \(character.name)")
     }
 }
