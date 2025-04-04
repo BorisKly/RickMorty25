@@ -1,0 +1,44 @@
+# Xcode
+.DS_Store
+build/
+DerivedData/
+*.xcodeproj/*
+*.xcworkspace/*
+xcuserdata/
+*.xccheckout
+*.xcscheme
+.idea/
+.vscode/
+
+# SwiftPM
+Packages/
+.swiftpm/
+
+# Carthage
+Carthage/Build/
+
+# CocoaPods
+Pods/
+
+# xcuserdata (Xcode-specific user data)
+xcuserdata/
+
+# Archive files
+*.xcarchive
+*.ipa
+
+# Swift Package Manager
+.swiftpm/
+.build/
+
+# Bundle directory
+*.bundle/
+
+# Playground
+timeline.xctimeline
+playground.xcworkspace/
+
+# Xcode coverage data
+*.gcda
+*.gcno
+

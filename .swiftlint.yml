@@ -1,0 +1,22 @@
+disabled_rules:
+  - force_cast
+  - force_try
+line_length:
+  warning: 120
+  error: 150   // коли стоїть error проект не збилниться
+  ignores_comment_body: true
+  ignores_urls: true
+variable_name:
+  min_length: 3
+  max_length: 40
+  excluded:
+    - id
+    - url
+  regex: '^[a-z][a-zA-Z0-9]*$'
+included:
+  - Source
+  - Tests
+excluded:
+  - Carthage
+  - Pods
+

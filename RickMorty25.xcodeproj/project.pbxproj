@@ -14,6 +14,12 @@
 		E494AA5B2D9FB9E400FE19D1 /* RickMorty25.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E494AA592D9FB9E400FE19D1 /* RickMorty25.xcdatamodeld */; };
 		E494AA5D2D9FB9E500FE19D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E494AA5C2D9FB9E500FE19D1 /* Assets.xcassets */; };
 		E494AA602D9FB9E500FE19D1 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = E494AA5F2D9FB9E500FE19D1 /* Base */; };
+		E494AA6A2D9FBD0600FE19D1 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494AA692D9FBD0600FE19D1 /* Fonts.swift */; };
+		E494AA6D2D9FBD4B00FE19D1 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494AA6C2D9FBD4B00FE19D1 /* Font+.swift */; };
+		E494AA6F2D9FBD9A00FE19D1 /* NunitoSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E494AA6E2D9FBD9A00FE19D1 /* NunitoSans.ttf */; };
+		E494AA722D9FC1BF00FE19D1 /* Colors+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494AA712D9FC1BF00FE19D1 /* Colors+.swift */; };
+		E494AA7E2D9FC69D00FE19D1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = E494AA7D2D9FC69D00FE19D1 /* SnapKit */; };
+		E494AA802D9FC69D00FE19D1 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = E494AA7F2D9FC69D00FE19D1 /* SnapKit-Dynamic */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +32,10 @@
 		E494AA5C2D9FB9E500FE19D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E494AA5F2D9FB9E500FE19D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E494AA612D9FB9E500FE19D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E494AA692D9FBD0600FE19D1 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		E494AA6C2D9FBD4B00FE19D1 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
+		E494AA6E2D9FBD9A00FE19D1 /* NunitoSans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NunitoSans.ttf; sourceTree = "<group>"; };
+		E494AA712D9FC1BF00FE19D1 /* Colors+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colors+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +43,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E494AA7E2D9FC69D00FE19D1 /* SnapKit in Frameworks */,
+				E494AA802D9FC69D00FE19D1 /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,8 +70,9 @@
 		E494AA4F2D9FB9E400FE19D1 /* RickMorty25 */ = {
 			isa = PBXGroup;
 			children = (
-				E494AA502D9FB9E400FE19D1 /* AppDelegate.swift */,
-				E494AA522D9FB9E400FE19D1 /* SceneDelegate.swift */,
+				E494AA6B2D9FBD3C00FE19D1 /* Extensions */,
+				E494AA682D9FBCF600FE19D1 /* Resources */,
+				E494AA672D9FBB9900FE19D1 /* App */,
 				E494AA542D9FB9E400FE19D1 /* ViewController.swift */,
 				E494AA562D9FB9E400FE19D1 /* Main.storyboard */,
 				E494AA5C2D9FB9E500FE19D1 /* Assets.xcassets */,
@@ -68,6 +81,33 @@
 				E494AA592D9FB9E400FE19D1 /* RickMorty25.xcdatamodeld */,
 			);
 			path = RickMorty25;
+			sourceTree = "<group>";
+		};
+		E494AA672D9FBB9900FE19D1 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				E494AA502D9FB9E400FE19D1 /* AppDelegate.swift */,
+				E494AA522D9FB9E400FE19D1 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		E494AA682D9FBCF600FE19D1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E494AA6E2D9FBD9A00FE19D1 /* NunitoSans.ttf */,
+				E494AA692D9FBD0600FE19D1 /* Fonts.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E494AA6B2D9FBD3C00FE19D1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E494AA6C2D9FBD4B00FE19D1 /* Font+.swift */,
+				E494AA712D9FC1BF00FE19D1 /* Colors+.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -84,8 +124,13 @@
 			buildRules = (
 			);
 			dependencies = (
+				E494AA7A2D9FC40900FE19D1 /* PBXTargetDependency */,
 			);
 			name = RickMorty25;
+			packageProductDependencies = (
+				E494AA7D2D9FC69D00FE19D1 /* SnapKit */,
+				E494AA7F2D9FC69D00FE19D1 /* SnapKit-Dynamic */,
+			);
 			productName = RickMorty25;
 			productReference = E494AA4D2D9FB9E400FE19D1 /* RickMorty25.app */;
 			productType = "com.apple.product-type.application";
@@ -114,6 +159,10 @@
 				Base,
 			);
 			mainGroup = E494AA442D9FB9E400FE19D1;
+			packageReferences = (
+				E494AA7B2D9FC5A600FE19D1 /* XCRemoteSwiftPackageReference "SwiftLint" */,
+				E494AA7C2D9FC69D00FE19D1 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = E494AA4E2D9FB9E400FE19D1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -128,6 +177,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E494AA6F2D9FBD9A00FE19D1 /* NunitoSans.ttf in Resources */,
 				E494AA5D2D9FB9E500FE19D1 /* Assets.xcassets in Resources */,
 				E494AA602D9FB9E500FE19D1 /* Base in Resources */,
 				E494AA582D9FB9E400FE19D1 /* Base in Resources */,
@@ -141,7 +191,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E494AA722D9FC1BF00FE19D1 /* Colors+.swift in Sources */,
+				E494AA6D2D9FBD4B00FE19D1 /* Font+.swift in Sources */,
 				E494AA552D9FB9E400FE19D1 /* ViewController.swift in Sources */,
+				E494AA6A2D9FBD0600FE19D1 /* Fonts.swift in Sources */,
 				E494AA512D9FB9E400FE19D1 /* AppDelegate.swift in Sources */,
 				E494AA532D9FB9E400FE19D1 /* SceneDelegate.swift in Sources */,
 				E494AA5B2D9FB9E400FE19D1 /* RickMorty25.xcdatamodeld in Sources */,
@@ -149,6 +202,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E494AA7A2D9FC40900FE19D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = E494AA792D9FC40900FE19D1 /* SwiftLintBuildToolPlugin */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E494AA562D9FB9E400FE19D1 /* Main.storyboard */ = {
@@ -222,7 +282,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -279,7 +339,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -303,6 +363,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -330,6 +391,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -365,6 +427,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E494AA762D9FC3CB00FE19D1 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.58.2;
+			};
+		};
+		E494AA7B2D9FC5A600FE19D1 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.58.2;
+			};
+		};
+		E494AA7C2D9FC69D00FE19D1 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E494AA792D9FC40900FE19D1 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E494AA762D9FC3CB00FE19D1 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		E494AA7D2D9FC69D00FE19D1 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E494AA7C2D9FC69D00FE19D1 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		E494AA7F2D9FC69D00FE19D1 /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E494AA7C2D9FC69D00FE19D1 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		E494AA592D9FB9E400FE19D1 /* RickMorty25.xcdatamodeld */ = {
