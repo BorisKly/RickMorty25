@@ -113,29 +113,25 @@ class NetworkService {
                     completion: completion)
     }
 
-    func getCharacters(page: Int, queryParams: [String: String]? = nil,
+    func getCharacters(page: Int,
                        completion: @escaping (Result<NetworkResponse, NetworkError>) -> Void) {
-        var parameters = queryParams ?? [:]
-        parameters["page"] = "\(page)"
-        let url = formUrl(endpoint: .character, queryParams: parameters)
+        let url = formUrl(endpoint: .character, queryParams: ["page": "\(page)"])
         print(url)
         let headers = getHeader()
         GET(url: url, headers: headers, completion: completion)
     }
 
     func getLocation(id: Int,
-                     queryParams: [String: String]? = nil,
                      completion: @escaping (Result<NetworkResponse, NetworkError>) -> Void) {
-        let url = formUrl(endpoint: .location, pathSuffics: String(id), queryParams: queryParams)
+        let url = formUrl(endpoint: .location, pathSuffics: String(id))
         print(url)
         let headers = getHeader()
         GET(url: url, headers: headers, completion: completion)
     }
 
     func getEpisode(id: Int,
-                    queryParams: [String: String]? = nil,
                     completion: @escaping (Result<NetworkResponse, NetworkError>) -> Void) {
-        let url = formUrl(endpoint: .episode, pathSuffics: String(id), queryParams: queryParams)
+        let url = formUrl(endpoint: .episode, pathSuffics: String(id))
         print(url)
         let headers = getHeader()
         GET(url: url, headers: headers, completion: completion)
