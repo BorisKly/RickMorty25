@@ -12,5 +12,7 @@ extension UIColor {
     static let successColor = UIColor(named: "successColor") ?? .systemGreen
     static let alertColor = UIColor(named: "alertColor") ?? .systemRed
     static let backColor = UIColor(named: "backColor") ?? .black
-    static let txtColor = UIColor(named: "textColor") ?? .black
+    static let secondaryBackColor = UIColor(named: "secondaryBackColor") ?? .white
+    static let txtColor = UIColor(named: "textColor") ?? .white
+    static let secondaryTxtColor = UIColor(named: "secondaryTextColor") ?? .black
 }

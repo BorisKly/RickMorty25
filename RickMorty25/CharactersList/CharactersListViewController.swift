@@ -13,6 +13,16 @@ class CharactersListViewController: UIViewController {
     let viewModel: CharactersListViewModel
     let activityIndicator = UIActivityIndicatorView()
 
+    private let mainLabel: UILabel = {
+        let label = UILabel()
+        label.text = "The Rick and Morty"
+        label.font = Fonts.customSuperHuge
+        label.textAlignment = .center
+        label.textColor = .secondaryTxtColor
+        label.backgroundColor = .secondaryBackColor
+        return label
+    }()
+
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -31,18 +41,29 @@ class CharactersListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        view.addSubview(mainLabel)
         view.addSubview(tableView)
 
         tableView.dataSource = self
         tableView.delegate = self
 
         viewModel.reloadTableView = { [weak self] in
+            self?.activityIndicator.stopAnimating()
             self?.tableView.reloadData()
         }
 
-        tableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        mainLabel.snp.makeConstraints { make in
+            make.top.equalTo(view)
+            make.left.right.equalToSuperview()
+            make.height.equalTo(100)
         }
+
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(mainLabel.snp.bottom)
+            make.left.right.bottom.equalToSuperview()
+        }
+
         setupActivityIndicator()
 
         viewModel.onCharacterSelected = {[weak self] character in
@@ -54,13 +75,13 @@ class CharactersListViewController: UIViewController {
 
     private func setupActivityIndicator() {
         activityIndicator.style = .large
-        activityIndicator.color = .red
+        activityIndicator.color = .yellow
 
         view.addSubview(activityIndicator)
 
         activityIndicator.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().inset(180)
+            make.centerY.equalToSuperview()
         }
     }
 }
@@ -83,5 +104,20 @@ extension CharactersListViewController: UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.didSelectCharacter(at: indexPath.row)
+    }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let lastIndex = viewModel.numberOfItems() - 1
+        if indexPath.row == lastIndex {
+            activityIndicator.startAnimating()
+            viewModel.loadMoreData()
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let currentOffset = scrollView.contentOffset.y
+        if currentOffset < 0 {
+            tableView.reloadData()
+        }
     }
 }

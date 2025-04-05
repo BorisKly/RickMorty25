@@ -97,9 +97,11 @@ class CharactersTableViewCell: UITableViewCell {
         statusStack.addArrangedSubview(speciesLabel)
 
         profileImageView.snp.makeConstraints { make in
-            make.size.equalTo(100)
-            make.top.equalToSuperview().offset(24)
-            make.left.equalToSuperview().offset(16)
+            make.top.equalToSuperview().offset(8)
+            make.left.equalToSuperview().offset(8)
+            make.right.lessThanOrEqualToSuperview().offset(-8)
+            make.bottom.lessThanOrEqualToSuperview().offset(-8)
+            make.width.equalTo(profileImageView.snp.height)
         }
         infoStack.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(24)

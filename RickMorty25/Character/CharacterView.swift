@@ -22,7 +22,7 @@ class CharacterView: UIView {
     var nameLabel: UILabel = {
         let label = UILabel()
         label.text = "name"
-        label.font = Fonts.customHuge
+        label.font = Fonts.customSuperHuge
         label.textColor = .txtColor
         return label
     }()
@@ -30,7 +30,7 @@ class CharacterView: UIView {
     var statusLabel: UILabel = {
         let label = UILabel()
         label.text = "status"
-        label.font = Fonts.customHuge
+        label.font = Fonts.customMedium
         label.textColor = .txtColor
         return label
     }()
@@ -38,7 +38,7 @@ class CharacterView: UIView {
     var genderLabel: UILabel = {
         let label = UILabel()
         label.text = "status"
-        label.font = Fonts.customHuge
+        label.font = Fonts.customMedium
         label.textColor = .txtColor
         return label
     }()
@@ -54,7 +54,7 @@ class CharacterView: UIView {
     var locationLabel: UILabel = {
         let label = UILabel()
         label.text = "location"
-        label.font = Fonts.customHuge
+        label.font = Fonts.customSuperHuge
         label.textColor = .txtColor
         return label
     }()
@@ -69,8 +69,8 @@ class CharacterView: UIView {
 
     var episodeLabel: UILabel = {
         let label = UILabel()
-        label.text = "episode"   // episode.first
-        label.font = Fonts.customHuge
+        label.text = "No episode info"
+        label.font = Fonts.customSuperHuge
         label.textColor = .txtColor
         return label
     }()
@@ -108,8 +108,8 @@ class CharacterView: UIView {
         fullStack.addArrangedSubview(episodeStack)
 
         fullStack.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(64)
-            make.bottom.equalToSuperview().inset(64)
+            make.top.equalToSuperview().inset(128)
+            make.bottom.equalToSuperview().inset(128)
             make.leading.trailing.equalToSuperview().inset(32)
         }
 

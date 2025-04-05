@@ -113,9 +113,12 @@ class NetworkService {
                     completion: completion)
     }
 
-    func getCharacters(queryParams: [String: String]? = nil,
+    func getCharacters(page: Int, queryParams: [String: String]? = nil,
                        completion: @escaping (Result<NetworkResponse, NetworkError>) -> Void) {
-        let url = formUrl(endpoint: .character, queryParams: queryParams)
+        var parameters = queryParams ?? [:]
+        parameters["page"] = "\(page)"
+        let url = formUrl(endpoint: .character, queryParams: parameters)
+        print(url)
         let headers = getHeader()
         GET(url: url, headers: headers, completion: completion)
     }
@@ -130,8 +133,8 @@ class NetworkService {
     }
 
     func getEpisode(id: Int,
-                     queryParams: [String: String]? = nil,
-                     completion: @escaping (Result<NetworkResponse, NetworkError>) -> Void) {
+                    queryParams: [String: String]? = nil,
+                    completion: @escaping (Result<NetworkResponse, NetworkError>) -> Void) {
         let url = formUrl(endpoint: .episode, pathSuffics: String(id), queryParams: queryParams)
         print(url)
         let headers = getHeader()

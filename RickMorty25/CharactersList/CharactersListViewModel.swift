@@ -27,8 +27,12 @@ class CharactersListViewModel {
         fetchCharacters(page: page)
     }
 
+    func numberOfItems() -> Int {
+        characters.count
+    }
+
     func fetchCharacters(page: Int) {
-            NetworkService.shared.getCharacters() { result in
+            NetworkService.shared.getCharacters(page: page) { result in
                 switch result {
                 case .success(let result):
                     let json = result.json
@@ -48,6 +52,15 @@ class CharactersListViewModel {
                 case .failure(let error):
                     print("Error: \(error.localizedDescription)")
                 }
+        }
+    }
+
+    func loadMoreData() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            if self.nextPageAvailiable {
+                self.page += 1
+                self.fetchCharacters(page: self.page)
+            }
         }
     }
 }

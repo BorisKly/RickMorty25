@@ -8,7 +8,7 @@
 import Foundation
 
 class CharacterViewModel {
-    
+
     var character: CharacterResponse
     var episode: EpisodeResponseData? {
         didSet {
