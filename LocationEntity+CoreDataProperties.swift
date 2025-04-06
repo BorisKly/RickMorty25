@@ -22,7 +22,7 @@ extension LocationEntity {
 
     @NSManaged public var created: String?
     @NSManaged public var dimension: String?
-    @NSManaged public var id: Int64
+    @NSManaged public var entityId: Int64
     @NSManaged public var name: String?
     @NSManaged public var type: String?
     @NSManaged public var url: String

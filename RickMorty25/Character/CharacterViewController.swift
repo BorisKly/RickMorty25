@@ -33,10 +33,10 @@ class CharacterViewController: UIViewController {
         super.viewDidLoad()
         mainView?.nameLabel.text = viewModel.character.name
         mainView?.statusLabel.text = viewModel.character.status
-        mainView?.genderLabel.text = viewModel.character.gender
-        mainView?.locationLabel.text = viewModel.character.location.name
-        loadImage(from: viewModel.character.image) { [weak self] image in
-            self?.mainView?.profileImageView.image = image ?? UIImage(named: "photo")
+//        mainView?.genderLabel.text = viewModel.character.gender
+//        mainView?.locationLabel.text = viewModel.character.location.name
+        loadImage(from: viewModel.character.image ?? "") { [weak self] image in
+            self?.mainView?.profileImageView.image = image
         }
         viewModel.onEpisodeUpdated = { [weak self] episode in
             self?.mainView?.episodeLabel.text = episode?.name

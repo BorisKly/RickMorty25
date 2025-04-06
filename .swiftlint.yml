@@ -2,8 +2,8 @@ disabled_rules:
   - force_cast
   - force_try
 trailing_whitespace:
-  ignores_empty_lines: false
-  ignores_comments: false
+  ignores_empty_lines: true
+  ignores_comments: true
 line_length:
   warning: 120
   error: 150   // коли стоїть error проект не збилниться

@@ -2,7 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
     <entity name="CharacterEntity" representedClassName="CharacterEntity" syncable="YES">
         <attribute name="created" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="entityId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="image" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="photo" optional="YES" attributeType="Binary"/>
@@ -17,8 +17,8 @@
     <entity name="EpisodeEntity" representedClassName="EpisodeEntity" syncable="YES">
         <attribute name="airData" optional="YES" attributeType="String"/>
         <attribute name="created" optional="YES" attributeType="String"/>
+        <attribute name="entityId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="episode" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="url" attributeType="String"/>
         <relationship name="characters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CharacterEntity" inverseName="episode" inverseEntity="CharacterEntity"/>
@@ -26,7 +26,7 @@
     <entity name="LocationEntity" representedClassName="LocationEntity" syncable="YES">
         <attribute name="created" optional="YES" attributeType="String"/>
         <attribute name="dimension" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="entityId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
         <attribute name="url" attributeType="String"/>

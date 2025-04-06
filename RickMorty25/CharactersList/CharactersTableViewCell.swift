@@ -64,7 +64,7 @@ class CharactersTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(with character: CharacterResponse) {
+    func configure(with character: CharacterData) {
         nameLabel.text = character.name
         speciesLabel.text = character.species
         statusLabel.text = character.status
@@ -76,8 +76,7 @@ class CharactersTableViewCell: UITableViewCell {
         } else {
             statusIndicator.backgroundColor = .systemGray
         }
-
-        loadImage(from: character.image) { [weak self] image in
+        loadImage(from: character.image ?? "") { [weak self] image in
             self?.profileImageView.image = image
         }
     }

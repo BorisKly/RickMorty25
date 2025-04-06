@@ -7,20 +7,24 @@
 
 import UIKit
 
-func loadImage(from urlString: String, completion: @escaping (UIImage?) -> Void) {
+func loadImage(from urlString: String, completion: @escaping (UIImage) -> Void) {
+    let defaultImage = UIImage(named: "photo") ?? UIImage()
     guard let url = URL(string: urlString) else {
-        completion(nil)
+        completion(defaultImage)
         return
     }
-
     URLSession.shared.dataTask(with: url) { data, response, error in
         if let error = error {
-            completion(nil)
+            DispatchQueue.main.async {
+                completion(defaultImage)
+            }
             return
         }
 
         guard let data = data, let image = UIImage(data: data) else {
-            completion(nil)
+            DispatchQueue.main.async {
+                completion(defaultImage)
+            }
             return
         }
 

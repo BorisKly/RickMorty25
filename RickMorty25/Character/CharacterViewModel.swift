@@ -9,7 +9,7 @@ import Foundation
 
 class CharacterViewModel {
 
-    var character: CharacterResponse
+    var character: CharacterData
     var episode: EpisodeResponseData? {
         didSet {
             onEpisodeUpdated?(episode)
@@ -17,9 +17,20 @@ class CharacterViewModel {
     }
     var onEpisodeUpdated: ((EpisodeResponseData?) -> Void)?
 
-    init(character: CharacterResponse) {
+    var allLocation: [LocationEntity]?
+    var allCharacters: [CharacterEntity]?
+
+    init(character: CharacterData) {
         self.character = character
-        fetchEpisode(id: character.id)
+        fetchEpisode(id: Int(character.id))
+
+        allLocation = CoreDataManager.shared.fetchAllLocations()
+        allCharacters = CoreDataManager.shared.fetchAllCharacters()
+
+        print(allLocation)
+        allCharacters?.forEach({ character in
+            print(character.name)
+        })
     }
 
     func fetchEpisode(id: Int) {

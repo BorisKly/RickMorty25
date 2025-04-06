@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct LocationData: Decodable, Identifiable {
+struct LocationData {
     let id: Int
     let name, type, dimension: String
-    let residents: [String]
+    let residents: [CharacterEntity]?
     let url: String
     let created: String
 }

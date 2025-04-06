@@ -23,7 +23,7 @@ extension EpisodeEntity {
     @NSManaged public var airData: String?
     @NSManaged public var created: String?
     @NSManaged public var episode: String?
-    @NSManaged public var id: Int64
+    @NSManaged public var entityId: Int64
     @NSManaged public var name: String?
     @NSManaged public var url: String
     @NSManaged public var characters: NSSet?
