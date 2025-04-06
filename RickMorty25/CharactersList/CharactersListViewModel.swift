@@ -41,6 +41,8 @@ class CharactersListViewModel {
                         let charactersResponseData = try JSONDecoder().decode(CharactersResponseData.self, from: jsonData)
                         DispatchQueue.main.async {
                             self.characters.append(contentsOf: charactersResponseData.results)
+//                            self.characters.forEach { CoreDataManager.shared.addCharacter(character: $0)
+//                            }
                             self.reloadTableView?()
                             if charactersResponseData.info.next == nil {
                                 self.nextPageAvailiable = false

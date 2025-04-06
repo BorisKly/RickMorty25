@@ -113,11 +113,4 @@ extension CharactersListViewController: UITableViewDelegate, UITableViewDataSour
             viewModel.loadMoreData()
         }
     }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let currentOffset = scrollView.contentOffset.y
-        if currentOffset < 0 {
-            tableView.reloadData()
-        }
-    }
 }
