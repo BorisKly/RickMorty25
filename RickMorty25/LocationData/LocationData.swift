@@ -8,9 +8,9 @@
 import Foundation
 
 struct LocationData {
-    let id: Int
-    let name, type, dimension: String
-    let residents: [CharacterEntity]?
-    let url: String
-    let created: String
+    var id: Int
+    var name, type, dimension: String?
+    var residents: [CharacterEntity]?
+    var url: String
+    var created: String?
 }

@@ -17,20 +17,9 @@ class CharacterViewModel {
     }
     var onEpisodeUpdated: ((EpisodeResponseData?) -> Void)?
 
-    var allLocation: [LocationEntity]?
-    var allCharacters: [CharacterEntity]?
-
     init(character: CharacterData) {
         self.character = character
         fetchEpisode(id: Int(character.id))
-
-        allLocation = CoreDataManager.shared.fetchAllLocations()
-        allCharacters = CoreDataManager.shared.fetchAllCharacters()
-
-        print(allLocation)
-        allCharacters?.forEach({ character in
-            print(character.name)
-        })
     }
 
     func fetchEpisode(id: Int) {

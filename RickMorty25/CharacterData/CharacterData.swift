@@ -16,8 +16,8 @@ struct CharacterData {
     let image: String?
     let url: String
     let created: String?
-    let photo: Data?
-    let origin: LocationEntity?
-    let location: LocationEntity?
-    let episodes: [EpisodeEntity]?
+    var photo: Data?
+    var origin: LocationEntity?
+    var location: LocationEntity?
+    var episodes: [EpisodeEntity]?
 }

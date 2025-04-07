@@ -33,8 +33,7 @@ class CharacterViewController: UIViewController {
         super.viewDidLoad()
         mainView?.nameLabel.text = viewModel.character.name
         mainView?.statusLabel.text = viewModel.character.status
-//        mainView?.genderLabel.text = viewModel.character.gender
-//        mainView?.locationLabel.text = viewModel.character.location.name
+        mainView?.locationLabel.text = viewModel.character.location?.name
         loadImage(from: viewModel.character.image ?? "") { [weak self] image in
             self?.mainView?.profileImageView.image = image
         }

@@ -9,6 +9,8 @@ import Foundation
 
 class CharactersListViewModel {
     
+    var networkMonitor = NetworkMonitor()
+
     var model = CharactersListModel()
     var characters: [CharacterData] = []
 
@@ -22,13 +24,26 @@ class CharactersListViewModel {
         let character = characters[index]
         onCharacterSelected?(character)
     }
-
+    
     init() {
-        fetchCharacters(page: page)
+        networkMonitor.$isConnected.sink { isConnected in
+            if isConnected {
+                self.fetchCharacters(page: self.page)
+            } else {
+                self.fetchCharactersFromCoreData()
+            }
+        }
+        print(CoreDataManager.shared.fetchAllCharacters().count)
+        print(CoreDataManager.shared.fetchAllLocations().count)
+        print(CoreDataManager.shared.fetchAllEpisodes().count)
     }
 
     func numberOfItems() -> Int {
         characters.count
+    }
+    
+    func fetchCharactersFromCoreData() {
+        print(#function)
     }
 
     func fetchCharacters(page: Int) {
@@ -39,48 +54,24 @@ class CharactersListViewModel {
                 do {
                     let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
                     let charactersResponseData = try JSONDecoder().decode(CharactersResponseData.self, from: jsonData)
+                    
                     DispatchQueue.main.async {
                         charactersResponseData.results.forEach { character in
-                            var originEntity: LocationEntity?
-                            if let extractedId = character.origin.url.extractedId {
-                                let entity = LocationEntity(context: CoreDataManager.shared.context)
-                                entity.entityId = extractedId
-                                entity.name = character.location.name
-                                entity.url = character.location.url
-                                originEntity = entity
-                            }
-                            var locationEntity: LocationEntity?
-                            if let extractedId = character.location.url.extractedId {
-                                let entity = LocationEntity(context: CoreDataManager.shared.context)
-                                entity.entityId = extractedId
-                                entity.name = character.location.name
-                                entity.url = character.location.url
-                                locationEntity = entity
-                            }
-                            var episodeEntities: [EpisodeEntity] = []
-                            let episodes: [EpisodeEntity]? = nil
+                            let characterData = self.characterResponseToCharacterData(character)
                             self.characters.append(
-                                CharacterData(
-                                    id: Int64(character.id),
-                                    name: character.name,
-                                    status: character.status,
-                                    species: character.status,
-                                    type: character.type,
-                                    image: character.image,
-                                    url: character.url,
-                                    created: character.created,
-                                    photo: nil,
-                                    origin: originEntity,
-                                    location: locationEntity,
-                                    episodes: episodeEntities))
-                        }
-                        self.characters.forEach { CoreDataManager.shared.createOrUpdateCharacter(from: $0)
+                                characterData)
+                            print(characterData.name)
+                            print(characterData.id)
+                            print(characterData.url)
                         }
                         self.reloadTableView?()
                         if charactersResponseData.info.next == nil {
                             self.nextPageAvailiable = false
                         }
+//                        self.characters.forEach { CoreDataManager.shared.createOrUpdateCharacter(from: $0)
+//                        }
                     }
+                   
                 } catch {
                     print("Error decoding CharactersResponseData: \(error.localizedDescription)")
                 }
@@ -97,5 +88,48 @@ class CharactersListViewModel {
                 self.fetchCharacters(page: self.page)
             }
         }
+    }
+    
+    func characterResponseToCharacterData(_ response: CharacterResponse) -> CharacterData {
+        
+        var result =  CharacterData(
+            id: Int64(response.id),
+            name: response.name,
+            status: response.status,
+            species: response.species,
+            type: response.type,
+            image: response.image,
+            url: response.url,
+            created: response.created,
+            photo: nil,
+            origin: nil,
+            location: nil,
+            episodes: nil
+        )
+        loadImage(from: response.image) { image in
+            var updatedResponse = response
+            if let imageData = image.jpegData(compressionQuality: 1.0) {
+                result.photo = imageData }
+        }
+        var originEntity = LocationEntity(context: CoreDataManager.shared.context)
+        if let extractedId = response.origin.url.extractedId {
+            let entity = LocationEntity(context: CoreDataManager.shared.context)
+            entity.entityId = extractedId
+            entity.name = response.location.name
+            entity.url = response.location.url
+            originEntity = entity
+        }
+        var locationEntity = LocationEntity(context: CoreDataManager.shared.context)
+        if let extractedId = response.location.url.extractedId {
+            let entity = LocationEntity(context: CoreDataManager.shared.context)
+            entity.entityId = extractedId
+            entity.name = response.location.name
+            entity.url = response.location.url
+            locationEntity = entity
+        }
+        result.origin = originEntity
+        result.location = locationEntity
+        
+        return result
     }
 }

@@ -17,8 +17,6 @@ final class CoreDataManager {
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
-            } else {
-                print("DB url -", storeDescription.url?.absoluteString)
             }
         })
         return container
@@ -36,35 +34,6 @@ final class CoreDataManager {
             } catch {
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
-        }
-    }
-    
-    func createOrUpdateCharacter(from model: CharacterData) {
-        
-        let fetchRequest: NSFetchRequest<CharacterEntity> = CharacterEntity.fetchRequest()
-        
-        fetchRequest.predicate = NSPredicate(format: "url == %@", model.url)
-        
-        let defaultImage = UIImage(named: "photo") ?? UIImage()
-        
-        loadImage(from: model.image ?? "") { image in
-            guard let imageData = image.jpegData(compressionQuality: 1.0) else {
-                print("Failed to convert image to data")
-                return
-            }
-            do {
-                let results = try self.context.fetch(fetchRequest)
-                
-                if let existingCharacter = results.first {
-                    print("Updating character with url: \(model.url)")
-                    self.updateCharacter(existingCharacter, with: model, photo: imageData)
-                } else {
-                    print("Creating new character with url: \(model.url)")
-                    self.saveNewCharacter(model, photo: imageData)
-                }
-            } catch {
-                print("Failed to fetch or save character: \(error)")
             }
         }
     }
