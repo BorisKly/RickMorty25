@@ -10,12 +10,12 @@ import Foundation
 class CharacterViewModel {
 
     var character: CharacterData
-    var episode: EpisodeResponseData? {
+    var episode: EpisodeResponse? {
         didSet {
             onEpisodeUpdated?(episode)
         }
     }
-    var onEpisodeUpdated: ((EpisodeResponseData?) -> Void)?
+    var onEpisodeUpdated: ((EpisodeResponse?) -> Void)?
 
     init(character: CharacterData) {
         self.character = character
@@ -23,13 +23,14 @@ class CharacterViewModel {
     }
 
     func fetchEpisode(id: Int) {
+        print(#function)
         NetworkService.shared.getEpisode(id: id) { result in
             switch result {
             case .success(let result):
                 let json = result.json
                 do {
                     let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
-                    let episodeResponseData = try JSONDecoder().decode(EpisodeResponseData.self, from: jsonData)
+                    let episodeResponseData = try JSONDecoder().decode(EpisodeResponse.self, from: jsonData)
                     DispatchQueue.main.async {
                         self.episode = episodeResponseData
                     }

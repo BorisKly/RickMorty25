@@ -109,7 +109,7 @@ extension CharactersListViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let lastIndex = viewModel.numberOfItems() - 1
         if indexPath.row == lastIndex {
-            if viewModel.networkMonitor.isConnected {
+            if viewModel.isConnected {
                 activityIndicator.startAnimating()
                 viewModel.loadMoreData()
             }

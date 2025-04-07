@@ -27,6 +27,7 @@ extension CharacterEntity {
     @NSManaged public var species: String?
     @NSManaged public var status: String?
     @NSManaged public var type: String?
+    @NSManaged public var gender: String?
     @NSManaged public var url: String
     @NSManaged public var photo: Data?
     @NSManaged public var origin: LocationEntity?

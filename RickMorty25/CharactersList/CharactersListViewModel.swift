@@ -9,44 +9,50 @@ import Foundation
 
 class CharactersListViewModel {
     
-    var networkMonitor = NetworkMonitor()
-
-    var model = CharactersListModel()
+    private var networkMonitor: NetworkMonitor
+    
+    var isConnected: Bool {
+        return networkMonitor.isConnected
+    }
+    
     var characters: [CharacterData] = []
-
+    
     var nextPageAvailiable = true
     var page = 1
-
+    
     var reloadTableView: (() -> Void)?
     var onCharacterSelected: ((CharacterData) -> Void)?
-
+    
     func didSelectCharacter(at index: Int) {
         let character = characters[index]
         onCharacterSelected?(character)
     }
     
     init() {
-        networkMonitor.$isConnected.sink { isConnected in
-            if isConnected {
-                self.fetchCharacters(page: self.page)
-            } else {
-                self.fetchCharactersFromCoreData()
-            }
+        self.networkMonitor = NetworkMonitor.shared
+        
+        if isConnected {
+            self.fetchCharacters(page: self.page)
+        } else {
+            let fetchedCharacters = CoreDataManager.shared.fetchCharactersFromCoreData()
+            self.characters = fetchedCharacters
         }
+        
         print(CoreDataManager.shared.fetchAllCharacters().count)
         print(CoreDataManager.shared.fetchAllLocations().count)
         print(CoreDataManager.shared.fetchAllEpisodes().count)
     }
-
+    
+    deinit {
+        networkMonitor.stopMonitoring()
+    }
+    
     func numberOfItems() -> Int {
         characters.count
     }
-    
-    func fetchCharactersFromCoreData() {
-        print(#function)
-    }
 
     func fetchCharacters(page: Int) {
+        print(#function)
         NetworkService.shared.getCharacters(page: page) { result in
             switch result {
             case .success(let result):
@@ -60,16 +66,14 @@ class CharactersListViewModel {
                             let characterData = self.characterResponseToCharacterData(character)
                             self.characters.append(
                                 characterData)
-                            print(characterData.name)
-                            print(characterData.id)
-                            print(characterData.url)
                         }
                         self.reloadTableView?()
                         if charactersResponseData.info.next == nil {
                             self.nextPageAvailiable = false
                         }
-//                        self.characters.forEach { CoreDataManager.shared.createOrUpdateCharacter(from: $0)
-//                        }
+                        self.characters.forEach { character in
+                             CoreDataManager.shared.createOrUpdateCharacter(from: character)
+                        }
                     }
                    
                 } catch {
@@ -98,38 +102,34 @@ class CharactersListViewModel {
             status: response.status,
             species: response.species,
             type: response.type,
+            gender: response.gender,
             image: response.image,
             url: response.url,
             created: response.created,
             photo: nil,
             origin: nil,
             location: nil,
-            episodes: nil
+            episode: nil
         )
         loadImage(from: response.image) { image in
             var updatedResponse = response
             if let imageData = image.jpegData(compressionQuality: 1.0) {
                 result.photo = imageData }
         }
-        var originEntity = LocationEntity(context: CoreDataManager.shared.context)
-        if let extractedId = response.origin.url.extractedId {
-            let entity = LocationEntity(context: CoreDataManager.shared.context)
-            entity.entityId = extractedId
-            entity.name = response.location.name
-            entity.url = response.location.url
-            originEntity = entity
-        }
-        var locationEntity = LocationEntity(context: CoreDataManager.shared.context)
-        if let extractedId = response.location.url.extractedId {
-            let entity = LocationEntity(context: CoreDataManager.shared.context)
-            entity.entityId = extractedId
-            entity.name = response.location.name
-            entity.url = response.location.url
-            locationEntity = entity
-        }
-        result.origin = originEntity
-        result.location = locationEntity
         
+        if let originLocationid = response.origin.url.extractedId {
+            let originLocation = LocationData(
+                id: originLocationid,
+                url: response.origin.url)
+            result.origin = originLocation
+        }
+        if let currentLocationid = response.location.url.extractedId {
+            let currentLocation = LocationData(
+                id: currentLocationid,
+                name: response.name,
+                url: response.location.url)
+            result.location = currentLocation
+        }
         return result
     }
 }

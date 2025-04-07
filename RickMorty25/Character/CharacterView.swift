@@ -37,7 +37,7 @@ class CharacterView: UIView {
 
     var genderLabel: UILabel = {
         let label = UILabel()
-        label.text = "status"
+        label.text = "gender"
         label.font = Fonts.customMedium
         label.textColor = .txtColor
         return label

@@ -6,38 +6,34 @@
 //
 
 import Foundation
-import Alamofire
+import Network
 
-class NetworkMonitor: ObservableObject {
-  
-    @Published var isConnected: Bool = true
+class NetworkMonitor {
+    private let monitor: NWPathMonitor
+    private let queue: DispatchQueue
+    var isConnected: Bool = true
     
-    private let reachabilityManager = NetworkReachabilityManager()
+    static let shared = NetworkMonitor()
     
-    init() {
-        startMonitoring()
+    private init() {
+        self.monitor = NWPathMonitor()
+        self.queue = DispatchQueue(label: "NetworkMonitorQueue")
     }
-    
-    private func startMonitoring() {
-        print(#function)
-        reachabilityManager?.startListening { status in
-            DispatchQueue.main.async {
-                self.isConnected = (status == .reachable(.ethernetOrWiFi) || status == .reachable(.cellular))
-                print("Network status: \(self.isConnected ? "Online" : "Offline")")
+
+    func startMonitoring() {
+        monitor.pathUpdateHandler = { [weak self] path in
+            if path.status == .satisfied {
+                self?.isConnected = true
+                print("Connected to the network")
+            } else {
+                self?.isConnected = false
+                print("No network connection")
             }
         }
+        monitor.start(queue: queue)
     }
-    
-    func checkConnection() {
-            guard let status = reachabilityManager?.status else {
-                print("Unable to check connection")
-                return
-            }
-            
-            DispatchQueue.main.async {
-                self.isConnected = (status == .reachable(.ethernetOrWiFi) || status == .reachable(.cellular))
-                print("Manual check: \(self.isConnected ? "Online" : "Offline")")
-            }
-        }
-    
+
+    func stopMonitoring() {
+        monitor.cancel()
+    }
 }

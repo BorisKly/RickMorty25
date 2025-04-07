@@ -13,11 +13,12 @@ struct CharacterData {
     let status: String?
     let species: String?
     let type: String?
+    let gender: String?
     let image: String?
     let url: String
     let created: String?
     var photo: Data?
-    var origin: LocationEntity?
-    var location: LocationEntity?
-    var episodes: [EpisodeEntity]?
+    var origin: LocationData?
+    var location: LocationData?
+    var episode: [EpisodeData]?
 }

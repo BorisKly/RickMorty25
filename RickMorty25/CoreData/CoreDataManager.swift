@@ -37,39 +37,4 @@ final class CoreDataManager {
             }
         }
     }
-    
-    func saveLocationToCoreData(from model: LocationData) {
-        let fetchRequest: NSFetchRequest<LocationEntity> = LocationEntity.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "url == %@", model.url)
-        
-        do {
-            let results = try self.context.fetch(fetchRequest)
-
-            let location: LocationEntity
-            if let existingLocation = results.first {
-                location = existingLocation
-                print("Updating existing location with id \(model.url)")
-            } else {
-                location = LocationEntity(context: self.context)
-                location.url = model.url
-                print("Creating new location with id \(model.url)")
-            }
-
-            location.entityId = Int64(model.id)
-            location.name = model.name
-            location.type = model.type
-            location.dimension = model.dimension
-            location.created = model.created
-
-            if let residents = model.residents {
-                location.residents = NSSet(array: residents)
-            }
-            self.saveContext()
-            print("Location saved successfully.")
-        } catch {
-            print("Failed to fetch or save location: \(error)")
-        }
-        
-    }
-
 }

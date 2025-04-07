@@ -17,7 +17,6 @@
 		E489390F2DA2A8AC00E3102A /* CoreDataManager+location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489390E2DA2A8AC00E3102A /* CoreDataManager+location.swift */; };
 		E48939112DA2A8F400E3102A /* CoreDataMAnager+episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48939102DA2A8F400E3102A /* CoreDataMAnager+episode.swift */; };
 		E48939132DA2B18400E3102A /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48939122DA2B18400E3102A /* NetworkMonitor.swift */; };
-		E48939162DA2B1CC00E3102A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E48939152DA2B1CC00E3102A /* Alamofire */; };
 		E48939182DA2EAB100E3102A /* CoreDataManager+character.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48939172DA2EAB100E3102A /* CoreDataManager+character.swift */; };
 		E494AA512D9FB9E400FE19D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494AA502D9FB9E400FE19D1 /* AppDelegate.swift */; };
 		E494AA532D9FB9E400FE19D1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494AA522D9FB9E400FE19D1 /* SceneDelegate.swift */; };
@@ -31,7 +30,6 @@
 		E494AA722D9FC1BF00FE19D1 /* Colors+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494AA712D9FC1BF00FE19D1 /* Colors+.swift */; };
 		E494AA852D9FC83400FE19D1 /* CharactersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494AA842D9FC83400FE19D1 /* CharactersTableViewCell.swift */; };
 		E494AA872D9FC84300FE19D1 /* CharactersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494AA862D9FC84300FE19D1 /* CharactersListViewModel.swift */; };
-		E494AA892D9FC84F00FE19D1 /* CharactersListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494AA882D9FC84F00FE19D1 /* CharactersListModel.swift */; };
 		E494AA8B2D9FC85D00FE19D1 /* CharactersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494AA8A2D9FC85D00FE19D1 /* CharactersListViewController.swift */; };
 		E494AA932D9FCD6400FE19D1 /* CharactersResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494AA922D9FCD6400FE19D1 /* CharactersResponseData.swift */; };
 		E494AA992D9FD91A00FE19D1 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494AA982D9FD91A00FE19D1 /* NetworkService.swift */; };
@@ -74,7 +72,6 @@
 		E494AA712D9FC1BF00FE19D1 /* Colors+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colors+.swift"; sourceTree = "<group>"; };
 		E494AA842D9FC83400FE19D1 /* CharactersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersTableViewCell.swift; sourceTree = "<group>"; };
 		E494AA862D9FC84300FE19D1 /* CharactersListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersListViewModel.swift; sourceTree = "<group>"; };
-		E494AA882D9FC84F00FE19D1 /* CharactersListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersListModel.swift; sourceTree = "<group>"; };
 		E494AA8A2D9FC85D00FE19D1 /* CharactersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersListViewController.swift; sourceTree = "<group>"; };
 		E494AA922D9FCD6400FE19D1 /* CharactersResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersResponseData.swift; sourceTree = "<group>"; };
 		E494AA982D9FD91A00FE19D1 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -96,7 +93,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E494AAA62D9FEEFB00FE19D1 /* SnapKit in Frameworks */,
-				E48939162DA2B1CC00E3102A /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +109,16 @@
 				E48939172DA2EAB100E3102A /* CoreDataManager+character.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		E48939192DA3CBCD00E3102A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E494AAB82DA0425300FE19D1 /* EpisodeData */,
+				E494AAB52DA0394D00FE19D1 /* LocationData */,
+				E494AA8F2D9FCD2F00FE19D1 /* CharacterData */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		E494AA442D9FB9E400FE19D1 = {
@@ -140,10 +146,8 @@
 				E451C4452DA16A700035E536 /* CoreData */,
 				E494AA822D9FC7C900FE19D1 /* NetworkService */,
 				E494AAA72D9FEF4D00FE19D1 /* Character */,
-				E494AAB52DA0394D00FE19D1 /* LocationData */,
-				E494AA8F2D9FCD2F00FE19D1 /* CharacterData */,
-				E494AAB82DA0425300FE19D1 /* EpisodeData */,
 				E494AA832D9FC80E00FE19D1 /* CharactersList */,
+				E48939192DA3CBCD00E3102A /* Model */,
 				E494AA6B2D9FBD3C00FE19D1 /* Extensions */,
 				E494AAB02DA01E7900FE19D1 /* Utilites */,
 				E494AA682D9FBCF600FE19D1 /* Resources */,
@@ -202,7 +206,6 @@
 				E494AA862D9FC84300FE19D1 /* CharactersListViewModel.swift */,
 				E494AA8A2D9FC85D00FE19D1 /* CharactersListViewController.swift */,
 				E494AA842D9FC83400FE19D1 /* CharactersTableViewCell.swift */,
-				E494AA882D9FC84F00FE19D1 /* CharactersListModel.swift */,
 			);
 			path = CharactersList;
 			sourceTree = "<group>";
@@ -237,8 +240,8 @@
 		E494AAB52DA0394D00FE19D1 /* LocationData */ = {
 			isa = PBXGroup;
 			children = (
-				E494AAB32DA0394400FE19D1 /* LocationData.swift */,
 				E494AAB62DA0396F00FE19D1 /* LocationResponseData.swift */,
+				E494AAB32DA0394400FE19D1 /* LocationData.swift */,
 			);
 			path = LocationData;
 			sourceTree = "<group>";
@@ -271,7 +274,6 @@
 			name = RickMorty25;
 			packageProductDependencies = (
 				E494AAA52D9FEEFB00FE19D1 /* SnapKit */,
-				E48939152DA2B1CC00E3102A /* Alamofire */,
 			);
 			productName = RickMorty25;
 			productReference = E494AA4D2D9FB9E400FE19D1 /* RickMorty25.app */;
@@ -304,7 +306,6 @@
 			packageReferences = (
 				E494AA7B2D9FC5A600FE19D1 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 				E494AAA42D9FEEFB00FE19D1 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				E48939142DA2B1CC00E3102A /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = E494AA4E2D9FB9E400FE19D1 /* Products */;
 			projectDirPath = "";
@@ -345,7 +346,6 @@
 				E494AA9C2D9FDA2600FE19D1 /* NetworkApiMethods.swift in Sources */,
 				E494AAAB2D9FEF9D00FE19D1 /* CharacterView.swift in Sources */,
 				E494AA6D2D9FBD4B00FE19D1 /* Font+.swift in Sources */,
-				E494AA892D9FC84F00FE19D1 /* CharactersListModel.swift in Sources */,
 				E48939032DA24CD200E3102A /* LocationEntity+CoreDataProperties.swift in Sources */,
 				E48939052DA24CD200E3102A /* CharacterEntity+CoreDataProperties.swift in Sources */,
 				E48939072DA24CD200E3102A /* EpisodeEntity+CoreDataProperties.swift in Sources */,
@@ -598,14 +598,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		E48939142DA2B1CC00E3102A /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.10.2;
-			};
-		};
 		E494AA762D9FC3CB00FE19D1 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/SwiftLint";
@@ -633,11 +625,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E48939152DA2B1CC00E3102A /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E48939142DA2B1CC00E3102A /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
 		E494AA792D9FC40900FE19D1 /* SwiftLintBuildToolPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E494AA762D9FC3CB00FE19D1 /* XCRemoteSwiftPackageReference "SwiftLint" */;

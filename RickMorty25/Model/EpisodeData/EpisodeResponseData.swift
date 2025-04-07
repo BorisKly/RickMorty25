@@ -1,5 +1,5 @@
 //
-//  EpisodeData.swift
+//  EpisodeResponseData.swift
 //  RickMorty25
 //
 //  Created by Borys Klykavka on 04.04.2025.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct EpisodeData: Decodable, Identifiable {
+struct EpisodeResponse: Decodable, Identifiable {
     let id: Int
     let name, airDate, episode: String
     let characters: [String]
@@ -19,4 +19,5 @@ struct EpisodeData: Decodable, Identifiable {
         case airDate = "air_date"
         case episode, characters, url, created
     }
+
 }
