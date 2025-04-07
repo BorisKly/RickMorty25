@@ -22,3 +22,7 @@ so it will seamlessly switch between light and dark modes based on user preferen
 
 Offline Mode: The app allows users to view last data while offline.
 
+<img src="https://github.com/user-attachments/assets/42478de7-60bc-483c-8864-7dd7dd6c330c" width="300" />
+<img src="https://github.com/user-attachments/assets/6a501046-da73-4d44-aaca-907879b4b618" width="300" />
+<img src="https://github.com/user-attachments/assets/d2552b50-f717-4f3c-b10e-23a8b38ade3d" width="300" />
+
