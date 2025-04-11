@@ -2,7 +2,7 @@
 //  LocationEntity+CoreDataProperties.swift
 //  RickMorty25
 //
-//  Created by Borys Klykavka on 06.04.2025.
+//  Created by Borys Klykavka on 11.04.2025.
 //
 //
 
@@ -47,5 +47,9 @@ extension LocationEntity {
 
 }
 
-extension LocationEntity: Identifiable {
+extension LocationEntity : Identifiable {
+    func safelyAddToResidents(_ character: CharacterEntity) {
+        print("Adding character with url: \(character.url) to location: \(self.name ?? "unknown")")
+        self.addToResidents(character)
+    }
 }

@@ -8,9 +8,10 @@
 import Foundation
 
 struct EpisodeData {
-    let id: Int64
-    let name, airDate, episode: String?
-    let characters: [CharacterData]?
-    let url: String
-    let created: String?
+    var id: Int64
+    var name: String?
+    var airDate, episode: String?
+    var characters: [CharacterData]?
+    var url: String
+    var created: String?
 }

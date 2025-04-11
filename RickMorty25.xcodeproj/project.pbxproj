@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		E451C4472DA16A840035E536 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E451C4462DA16A840035E536 /* CoreDataManager.swift */; };
 		E451C4562DA18BC30035E536 /* RickMorty25.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E451C4542DA18BC30035E536 /* RickMorty25.xcdatamodeld */; };
-		E48939032DA24CD200E3102A /* LocationEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48938FD2DA24CD200E3102A /* LocationEntity+CoreDataProperties.swift */; };
-		E48939052DA24CD200E3102A /* CharacterEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48938FF2DA24CD200E3102A /* CharacterEntity+CoreDataProperties.swift */; };
-		E48939072DA24CD200E3102A /* EpisodeEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48939012DA24CD200E3102A /* EpisodeEntity+CoreDataProperties.swift */; };
 		E48939092DA2522200E3102A /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48939082DA2522200E3102A /* String+.swift */; };
 		E489390B2DA267DA00E3102A /* CharacterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489390A2DA267DA00E3102A /* CharacterData.swift */; };
 		E489390F2DA2A8AC00E3102A /* CoreDataManager+location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489390E2DA2A8AC00E3102A /* CoreDataManager+location.swift */; };
@@ -22,6 +19,9 @@
 		E48939222DA90CA900E3102A /* NetworkService+episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48939212DA90CA900E3102A /* NetworkService+episode.swift */; };
 		E48939242DA90D3B00E3102A /* NetworkService+location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48939232DA90D3B00E3102A /* NetworkService+location.swift */; };
 		E48939262DA90D8500E3102A /* NetworkService+character.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48939252DA90D8500E3102A /* NetworkService+character.swift */; };
+		E48939312DA962C900E3102A /* EpisodeEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489392B2DA962C900E3102A /* EpisodeEntity+CoreDataProperties.swift */; };
+		E48939332DA962C900E3102A /* CharacterEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489392D2DA962C900E3102A /* CharacterEntity+CoreDataProperties.swift */; };
+		E48939352DA962C900E3102A /* LocationEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E489392F2DA962C900E3102A /* LocationEntity+CoreDataProperties.swift */; };
 		E494AA512D9FB9E400FE19D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494AA502D9FB9E400FE19D1 /* AppDelegate.swift */; };
 		E494AA532D9FB9E400FE19D1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494AA522D9FB9E400FE19D1 /* SceneDelegate.swift */; };
 		E494AA552D9FB9E400FE19D1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494AA542D9FB9E400FE19D1 /* ViewController.swift */; };
@@ -52,9 +52,6 @@
 /* Begin PBXFileReference section */
 		E451C4462DA16A840035E536 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		E451C4552DA18BC30035E536 /* RickMordy25.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RickMordy25.xcdatamodel; sourceTree = "<group>"; };
-		E48938FD2DA24CD200E3102A /* LocationEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		E48938FF2DA24CD200E3102A /* CharacterEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CharacterEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		E48939012DA24CD200E3102A /* EpisodeEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EpisodeEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E48939082DA2522200E3102A /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		E489390A2DA267DA00E3102A /* CharacterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterData.swift; sourceTree = "<group>"; };
 		E489390E2DA2A8AC00E3102A /* CoreDataManager+location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataManager+location.swift"; sourceTree = "<group>"; };
@@ -64,6 +61,10 @@
 		E48939212DA90CA900E3102A /* NetworkService+episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService+episode.swift"; sourceTree = "<group>"; };
 		E48939232DA90D3B00E3102A /* NetworkService+location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService+location.swift"; sourceTree = "<group>"; };
 		E48939252DA90D8500E3102A /* NetworkService+character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService+character.swift"; sourceTree = "<group>"; };
+		E48939292DA9611E00E3102A /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		E489392B2DA962C900E3102A /* EpisodeEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EpisodeEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E489392D2DA962C900E3102A /* CharacterEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CharacterEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E489392F2DA962C900E3102A /* LocationEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E494AA4D2D9FB9E400FE19D1 /* RickMorty25.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickMorty25.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E494AA502D9FB9E400FE19D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E494AA522D9FB9E400FE19D1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -130,9 +131,10 @@
 		E494AA442D9FB9E400FE19D1 = {
 			isa = PBXGroup;
 			children = (
-				E48938FD2DA24CD200E3102A /* LocationEntity+CoreDataProperties.swift */,
-				E48938FF2DA24CD200E3102A /* CharacterEntity+CoreDataProperties.swift */,
-				E48939012DA24CD200E3102A /* EpisodeEntity+CoreDataProperties.swift */,
+				E489392B2DA962C900E3102A /* EpisodeEntity+CoreDataProperties.swift */,
+				E489392D2DA962C900E3102A /* CharacterEntity+CoreDataProperties.swift */,
+				E489392F2DA962C900E3102A /* LocationEntity+CoreDataProperties.swift */,
+				E48939292DA9611E00E3102A /* MyPlayground.playground */,
 				E494AA4F2D9FB9E400FE19D1 /* RickMorty25 */,
 				E494AA4E2D9FB9E400FE19D1 /* Products */,
 			);
@@ -346,6 +348,9 @@
 			files = (
 				E494AA932D9FCD6400FE19D1 /* CharactersResponseData.swift in Sources */,
 				E494AA8B2D9FC85D00FE19D1 /* CharactersListViewController.swift in Sources */,
+				E48939312DA962C900E3102A /* EpisodeEntity+CoreDataProperties.swift in Sources */,
+				E48939332DA962C900E3102A /* CharacterEntity+CoreDataProperties.swift in Sources */,
+				E48939352DA962C900E3102A /* LocationEntity+CoreDataProperties.swift in Sources */,
 				E494AA9E2D9FDAD700FE19D1 /* NetworkError.swift in Sources */,
 				E494AA872D9FC84300FE19D1 /* CharactersListViewModel.swift in Sources */,
 				E494AAB72DA0396F00FE19D1 /* LocationResponseData.swift in Sources */,
@@ -355,9 +360,6 @@
 				E494AA9C2D9FDA2600FE19D1 /* NetworkApiMethods.swift in Sources */,
 				E494AAAB2D9FEF9D00FE19D1 /* CharacterView.swift in Sources */,
 				E494AA6D2D9FBD4B00FE19D1 /* Font+.swift in Sources */,
-				E48939032DA24CD200E3102A /* LocationEntity+CoreDataProperties.swift in Sources */,
-				E48939052DA24CD200E3102A /* CharacterEntity+CoreDataProperties.swift in Sources */,
-				E48939072DA24CD200E3102A /* EpisodeEntity+CoreDataProperties.swift in Sources */,
 				E489390F2DA2A8AC00E3102A /* CoreDataManager+location.swift in Sources */,
 				E494AA992D9FD91A00FE19D1 /* NetworkService.swift in Sources */,
 				E494AAA92D9FEF9500FE19D1 /* CharacterViewModel.swift in Sources */,

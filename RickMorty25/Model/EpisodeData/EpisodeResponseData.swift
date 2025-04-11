@@ -19,5 +19,4 @@ struct EpisodeResponse: Decodable, Identifiable {
         case airDate = "air_date"
         case episode, characters, url, created
     }
-
 }

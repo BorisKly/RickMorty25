@@ -2,7 +2,7 @@
 //  CharacterEntity+CoreDataProperties.swift
 //  RickMorty25
 //
-//  Created by Borys Klykavka on 06.04.2025.
+//  Created by Borys Klykavka on 11.04.2025.
 //
 //
 
@@ -22,17 +22,17 @@ extension CharacterEntity {
 
     @NSManaged public var created: String?
     @NSManaged public var entityId: Int64
+    @NSManaged public var gender: String?
     @NSManaged public var image: String?
     @NSManaged public var name: String?
+    @NSManaged public var photo: Data?
     @NSManaged public var species: String?
     @NSManaged public var status: String?
     @NSManaged public var type: String?
-    @NSManaged public var gender: String?
     @NSManaged public var url: String
-    @NSManaged public var photo: Data?
-    @NSManaged public var origin: LocationEntity?
-    @NSManaged public var location: LocationEntity?
     @NSManaged public var episode: NSSet?
+    @NSManaged public var location: LocationEntity?
+    @NSManaged public var origin: LocationEntity?
 
 }
 
@@ -54,4 +54,8 @@ extension CharacterEntity {
 }
 
 extension CharacterEntity: Identifiable {
+    func safelyAddToEpisode(_ episode: EpisodeEntity) {
+        print("Adding episode with url: \(episode.url) to character: \(self.name ?? "unknown")")
+         self.addToEpisode(episode)
+     }
 }

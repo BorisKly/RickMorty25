@@ -34,13 +34,9 @@ class CharactersListViewModel {
         if isConnected {
             self.fetchCharacters(page: self.page)
         } else {
-            let fetchedCharacters = CoreDataManager.shared.fetchCharactersFromCoreData()
-            self.characters = fetchedCharacters
+            self.characters = CoreDataManager.shared.fetchCharactersFromCoreData()
+            reloadTableView?()
         }
-        
-        print(CoreDataManager.shared.fetchAllCharacters().count)
-        print(CoreDataManager.shared.fetchAllLocations().count)
-        print(CoreDataManager.shared.fetchAllEpisodes().count)
     }
     
     deinit {
@@ -50,7 +46,7 @@ class CharactersListViewModel {
     func numberOfItems() -> Int {
         characters.count
     }
-
+    
     func fetchCharacters(page: Int) {
         print(#function)
         NetworkService.shared.getCharacters(page: page) { result in
@@ -68,14 +64,17 @@ class CharactersListViewModel {
                                 characterData)
                         }
                         self.reloadTableView?()
-                        if charactersResponseData.info.next == nil {
-                            self.nextPageAvailiable = false
-                        }
                         self.characters.forEach { character in
-                             CoreDataManager.shared.createOrUpdateCharacter(from: character)
+                            CoreDataManager.shared.addCharacterToDB(character: character)
                         }
+                        print(CoreDataManager.shared.fetchAllCharacters().count)
+                        print(CoreDataManager.shared.fetchAllLocations().count)
+                        print(CoreDataManager.shared.fetchAllEpisodes().count)
                     }
-                   
+                    
+                    if charactersResponseData.info.next == nil {
+                        self.nextPageAvailiable = false
+                    }
                 } catch {
                     print("Error decoding CharactersResponseData: \(error.localizedDescription)")
                 }
@@ -94,7 +93,7 @@ class CharactersListViewModel {
         }
     }
     
-    func characterResponseToCharacterData(_ response: CharacterResponse) -> CharacterData {
+    private func characterResponseToCharacterData(_ response: CharacterResponse) -> CharacterData {
         
         var result =  CharacterData(
             id: Int64(response.id),
@@ -112,23 +111,33 @@ class CharactersListViewModel {
             episode: nil
         )
         loadImage(from: response.image) { image in
-            var updatedResponse = response
             if let imageData = image.jpegData(compressionQuality: 1.0) {
                 result.photo = imageData }
         }
         
-        if let originLocationid = response.origin.url.extractedId {
+        if let originLocationId = response.origin.url.extractedId {
             let originLocation = LocationData(
-                id: originLocationid,
+                id: originLocationId,
+                name: response.name,
                 url: response.origin.url)
             result.origin = originLocation
         }
-        if let currentLocationid = response.location.url.extractedId {
+        if let currentLocationId = response.location.url.extractedId {
             let currentLocation = LocationData(
-                id: currentLocationid,
+                id: currentLocationId,
                 name: response.name,
                 url: response.location.url)
             result.location = currentLocation
+        }
+        
+        response.episode.forEach { str in
+            if let episodeId = str.extractedId {
+                let episodeData = EpisodeData(
+                    id: episodeId,
+                    url: str
+                )
+                result.episode?.append(episodeData)
+            }
         }
         return result
     }

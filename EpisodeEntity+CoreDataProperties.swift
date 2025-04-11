@@ -2,7 +2,7 @@
 //  EpisodeEntity+CoreDataProperties.swift
 //  RickMorty25
 //
-//  Created by Borys Klykavka on 06.04.2025.
+//  Created by Borys Klykavka on 11.04.2025.
 //
 //
 
@@ -22,8 +22,8 @@ extension EpisodeEntity {
 
     @NSManaged public var airData: String?
     @NSManaged public var created: String?
-    @NSManaged public var episode: String?
     @NSManaged public var entityId: Int64
+    @NSManaged public var episode: String?
     @NSManaged public var name: String?
     @NSManaged public var url: String
     @NSManaged public var characters: NSSet?
@@ -47,5 +47,6 @@ extension EpisodeEntity {
 
 }
 
-extension EpisodeEntity: Identifiable {
+extension EpisodeEntity : Identifiable {
+
 }

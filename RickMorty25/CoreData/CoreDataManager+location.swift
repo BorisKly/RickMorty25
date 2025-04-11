@@ -9,26 +9,62 @@ import CoreData
 
 extension CoreDataManager {
     
-    func saveNewLocation(_ model: LocationData) {
-        let location = LocationEntity(context: context)
-        location.url = model.url
-        updateLocation(location, with: model)
-        print("Created new location with URL \(model.url)")
-    }
-    
-    func updateLocation(_ location: LocationEntity, with model: LocationData) {
-        location.entityId = Int64(model.id)
-        location.name = model.name
-        location.type = model.type
-        location.dimension = model.dimension
-        location.created = model.created
+// MARK: -- add location to DB
 
-        if let residents = model.residents {
-            location.residents = NSSet(array: residents)
+//    func addLocationToDB(location: LocationData) {
+//        
+//        let fetchRequest: NSFetchRequest<LocationEntity> = LocationEntity.fetchRequest()
+//        
+//        fetchRequest.predicate = NSPredicate(format: "url == %@", location.url)
+//        
+//        do {
+//            let results = try self.context.fetch(fetchRequest)
+//            if !results.isEmpty {
+//                print("Location \(location.url) already exists")
+//                // перевірити чи співпадає парам lastUpdatedDate чи щось типу такого... якщо різні - то update location 
+//                return
+//            }
+//            
+//            let newLocationEntity = convertCharacterDataToCharacterEntity(character)
+//           
+//            if let origin = location.origin {
+//                newCharacterEntity.origin = findOrCreateLocationEntity(fromLocationData: origin)
+//            }
+//            
+//            if let location = character.location {
+//                newCharacterEntity.location = findOrCreateLocationEntity(fromLocationData: location)
+//            }
+//            
+//            if let episode = character.episode {
+//                var episodes =  [EpisodeEntity]()
+//                episode.forEach { episode in
+//                    let newEpisode = findOrCreateEpisode(from: episode)
+//                    newCharacterEntity.addToEpisode(newEpisode)
+//                }
+//            }
+//            
+//            saveContext()
+//        } catch {
+//            print("Failed to fetch or save character: \(error)")
+//        }
+//    }
+//    
+// MARK: -- create
+    
+    func findOrCreateLocationEntity(fromLocationData location: LocationData) -> LocationEntity {
+        let fetchRequest: NSFetchRequest<LocationEntity> = LocationEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "url == %@", location.url)
+        fetchRequest.fetchLimit = 1
+
+        if let existing = try? context.fetch(fetchRequest).first {
+            return existing
         }
 
-        saveContext()
-        print("Updated existing location with URL \(model.url)")
+        let newLocation = LocationEntity(context: context)
+        newLocation.entityId = Int64(location.id)
+        newLocation.name = location.name
+        newLocation.url = location.url
+        return newLocation
     }
     
     func fetchAllLocations() -> [LocationEntity] {

@@ -10,77 +10,75 @@ import UIKit
 
 extension CoreDataManager {
     
-    func updateCharacter(_ entity: CharacterEntity, with model: CharacterData) {
-        
-        entity.entityId = model.id
-        entity.name = model.name
-        entity.status = model.status
-        entity.species = model.species
-        entity.type = model.type
-        entity.image = model.image
-        entity.url = model.url
-        entity.created = model.created
-        entity.photo = model.photo
-        
-        if let originData = model.origin {
-            let originEntity = LocationEntity(context: context)
-            originEntity.entityId = originData.id
-            originEntity.name = originData.name
-            originEntity.url = originData.url
-            entity.origin = originEntity
-        }
-
-        if let locationData = model.location {
-            let locationEntity = LocationEntity(context: context)
-            locationEntity.entityId = locationData.id
-            locationEntity.name = locationData.name
-            locationEntity.url = locationData.url
-            entity.location = locationEntity
-        }
-
-        if let episodeDataArray = model.episode {
-            let episodeEntities = episodeDataArray.map { episodeData -> EpisodeEntity in
-                let episodeEntity = EpisodeEntity(context: context)
-                episodeEntity.name = episodeData.name
-                episodeEntity.episode = episodeData.episode
-                episodeEntity.airData = episodeData.airDate
-                episodeEntity.url = episodeData.url
-                return episodeEntity
-            }
-            entity.episode = NSSet(array: episodeEntities)
-        }
-
-        do {
-            try context.save()
-        } catch {
-            print("Failed to update character: \(error)")
-        }
-    }
-
-    func saveNewCharacter(with model: CharacterData) {
-        let entity = CharacterEntity(context: context)
-        updateCharacter(entity, with: model)
-    }
+// MARK: -- add characters to DB
     
-    func createOrUpdateCharacter(from model: CharacterData) {
+    func addCharacterToDB(character: CharacterData) {
+        print(#function)
         let fetchRequest: NSFetchRequest<CharacterEntity> = CharacterEntity.fetchRequest()
         
-        fetchRequest.predicate = NSPredicate(format: "url == %@", model.url)
+        fetchRequest.predicate = NSPredicate(format: "url == %@", character.url)
         
         do {
             let results = try self.context.fetch(fetchRequest)
             if !results.isEmpty {
-                print("Character \(model.url) already exists")
+                print("Character \(character.url) already exists")
+                // перевірити чи співпадає парам lastUpdatedDate чи щось типу такого... якщо різні - то update character 
                 return
             }
             
-            if let existingCharacter = results.first {
-                self.updateCharacter(existingCharacter, with: model)
-            } else {
-                self.saveNewCharacter(with: model)
+            let newCharacterEntity = convertCharacterDataToCharacterEntity(character)
+           
+            if let origin = character.origin {
+                newCharacterEntity.origin = findOrCreateLocationEntity(fromLocationData: origin)
             }
+            
+            if let location = character.location {
+                newCharacterEntity.location = findOrCreateLocationEntity(fromLocationData: location)
+                let newLocation = newCharacterEntity.location
+                newLocation?.safelyAddToResidents(newCharacterEntity)
+            }
+            
+            if let episode = character.episode {
+                episode.forEach { episode in
+                    let newEpisode = findOrCreateEpisodeEntiy(fromEpisodeData: episode)
+                    newCharacterEntity.safelyAddToEpisode(newEpisode)
+                }
+            }
+            saveContext()
         } catch {
             print("Failed to fetch or save character: \(error)")
+        }
+    }
+    
+    func convertCharacterDataToCharacterEntity(_ character: CharacterData) -> CharacterEntity {
+        
+        let entity = CharacterEntity(context: context)
+        entity.entityId = character.id
+        entity.name = character.name
+        entity.status = character.status
+        entity.species = character.species
+        entity.type = character.type
+        entity.image = character.image
+        entity.url = character.url
+        entity.created = character.created
+        entity.photo = character.photo
+        entity.origin = nil
+        entity.location = nil
+        entity.episode = []
+        return entity
+    }
+
+// MARK: -- fetch characters from DB
+
+    func fetchAllCharacters() -> [CharacterEntity] {
+        let fetchRequest: NSFetchRequest<CharacterEntity> = CharacterEntity.fetchRequest()
+
+        do {
+            let characters = try context.fetch(fetchRequest)
+            return characters
+        } catch {
+            print("Failed to fetch all characters: \(error)")
+            return []
         }
     }
     
@@ -129,17 +127,4 @@ extension CoreDataManager {
             return []
         }
     }
-    
-    func fetchAllCharacters() -> [CharacterEntity] {
-        let fetchRequest: NSFetchRequest<CharacterEntity> = CharacterEntity.fetchRequest()
-
-        do {
-            let characters = try context.fetch(fetchRequest)
-            return characters
-        } catch {
-            print("Failed to fetch all characters: \(error)")
-            return []
-        }
-    }
-    
 }
