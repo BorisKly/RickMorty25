@@ -20,7 +20,7 @@ class NetworkService {
     public static let shared = NetworkService()
     private init() {}
 
-    private func getHeader(accessToken: String? = nil,
+    func getHeader(accessToken: String? = nil,
                            isMultipart: Bool = false,
                            boundary: String? = nil) -> [String: String] {
         var header: [String: String] = ["Content-Type": isMultipart ? "multipart/form-data; boundary=\(boundary ?? "")" : "application/json"]
@@ -30,7 +30,7 @@ class NetworkService {
         return header
     }
 
-    private func formUrl(endpoint: NetworkApiMethods,
+    func formUrl(endpoint: NetworkApiMethods,
                          pathSuffics: String? = nil,
                          queryParams: [String: String]? = nil) -> String {
 
@@ -50,7 +50,7 @@ class NetworkService {
         return components.url?.absoluteString ?? ""
     }
 
-    private func sendRequest(method: String,
+    func sendRequest(method: String,
                              url: String,
                              headers: [String: String]? = nil,
                              body: Any? = nil,
@@ -102,7 +102,7 @@ class NetworkService {
         task.resume()
     }
 
-    private func GET(url: String,
+    func GET(url: String,
                      headers: [String: String]? = nil,
                      completion: @escaping (Result<NetworkResponse, NetworkError>) -> Void) {
         sendRequest(method: "GET",
@@ -113,27 +113,4 @@ class NetworkService {
                     completion: completion)
     }
 
-    func getCharacters(page: Int,
-                       completion: @escaping (Result<NetworkResponse, NetworkError>) -> Void) {
-        let url = formUrl(endpoint: .character, queryParams: ["page": "\(page)"])
-        print(url)
-        let headers = getHeader()
-        GET(url: url, headers: headers, completion: completion)
-    }
-
-    func getLocation(id: Int,
-                     completion: @escaping (Result<NetworkResponse, NetworkError>) -> Void) {
-        let url = formUrl(endpoint: .location, pathSuffics: String(id))
-        print(url)
-        let headers = getHeader()
-        GET(url: url, headers: headers, completion: completion)
-    }
-
-    func getEpisode(id: Int,
-                    completion: @escaping (Result<NetworkResponse, NetworkError>) -> Void) {
-        let url = formUrl(endpoint: .episode, pathSuffics: String(id))
-        print(url)
-        let headers = getHeader()
-        GET(url: url, headers: headers, completion: completion)
-    }
 }

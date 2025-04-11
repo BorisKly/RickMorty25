@@ -18,6 +18,10 @@
 		E48939112DA2A8F400E3102A /* CoreDataMAnager+episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48939102DA2A8F400E3102A /* CoreDataMAnager+episode.swift */; };
 		E48939132DA2B18400E3102A /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48939122DA2B18400E3102A /* NetworkMonitor.swift */; };
 		E48939182DA2EAB100E3102A /* CoreDataManager+character.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48939172DA2EAB100E3102A /* CoreDataManager+character.swift */; };
+		E48939202DA90C6300E3102A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = E489391F2DA90C6300E3102A /* SnapKit */; };
+		E48939222DA90CA900E3102A /* NetworkService+episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48939212DA90CA900E3102A /* NetworkService+episode.swift */; };
+		E48939242DA90D3B00E3102A /* NetworkService+location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48939232DA90D3B00E3102A /* NetworkService+location.swift */; };
+		E48939262DA90D8500E3102A /* NetworkService+character.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48939252DA90D8500E3102A /* NetworkService+character.swift */; };
 		E494AA512D9FB9E400FE19D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494AA502D9FB9E400FE19D1 /* AppDelegate.swift */; };
 		E494AA532D9FB9E400FE19D1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494AA522D9FB9E400FE19D1 /* SceneDelegate.swift */; };
 		E494AA552D9FB9E400FE19D1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494AA542D9FB9E400FE19D1 /* ViewController.swift */; };
@@ -35,7 +39,6 @@
 		E494AA992D9FD91A00FE19D1 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494AA982D9FD91A00FE19D1 /* NetworkService.swift */; };
 		E494AA9C2D9FDA2600FE19D1 /* NetworkApiMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494AA9B2D9FDA2600FE19D1 /* NetworkApiMethods.swift */; };
 		E494AA9E2D9FDAD700FE19D1 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494AA9D2D9FDAD700FE19D1 /* NetworkError.swift */; };
-		E494AAA62D9FEEFB00FE19D1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = E494AAA52D9FEEFB00FE19D1 /* SnapKit */; };
 		E494AAA92D9FEF9500FE19D1 /* CharacterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494AAA82D9FEF9500FE19D1 /* CharacterViewModel.swift */; };
 		E494AAAB2D9FEF9D00FE19D1 /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494AAAA2D9FEF9D00FE19D1 /* CharacterView.swift */; };
 		E494AAAF2D9FEFBF00FE19D1 /* CharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494AAAE2D9FEFBF00FE19D1 /* CharacterViewController.swift */; };
@@ -58,6 +61,9 @@
 		E48939102DA2A8F400E3102A /* CoreDataMAnager+episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataMAnager+episode.swift"; sourceTree = "<group>"; };
 		E48939122DA2B18400E3102A /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		E48939172DA2EAB100E3102A /* CoreDataManager+character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataManager+character.swift"; sourceTree = "<group>"; };
+		E48939212DA90CA900E3102A /* NetworkService+episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService+episode.swift"; sourceTree = "<group>"; };
+		E48939232DA90D3B00E3102A /* NetworkService+location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService+location.swift"; sourceTree = "<group>"; };
+		E48939252DA90D8500E3102A /* NetworkService+character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkService+character.swift"; sourceTree = "<group>"; };
 		E494AA4D2D9FB9E400FE19D1 /* RickMorty25.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickMorty25.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E494AA502D9FB9E400FE19D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E494AA522D9FB9E400FE19D1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -92,7 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E494AAA62D9FEEFB00FE19D1 /* SnapKit in Frameworks */,
+				E48939202DA90C6300E3102A /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +199,9 @@
 			isa = PBXGroup;
 			children = (
 				E494AA982D9FD91A00FE19D1 /* NetworkService.swift */,
+				E48939212DA90CA900E3102A /* NetworkService+episode.swift */,
+				E48939232DA90D3B00E3102A /* NetworkService+location.swift */,
+				E48939252DA90D8500E3102A /* NetworkService+character.swift */,
 				E494AA9B2D9FDA2600FE19D1 /* NetworkApiMethods.swift */,
 				E494AA9D2D9FDAD700FE19D1 /* NetworkError.swift */,
 				E48939122DA2B18400E3102A /* NetworkMonitor.swift */,
@@ -273,7 +282,7 @@
 			);
 			name = RickMorty25;
 			packageProductDependencies = (
-				E494AAA52D9FEEFB00FE19D1 /* SnapKit */,
+				E489391F2DA90C6300E3102A /* SnapKit */,
 			);
 			productName = RickMorty25;
 			productReference = E494AA4D2D9FB9E400FE19D1 /* RickMorty25.app */;
@@ -305,7 +314,7 @@
 			mainGroup = E494AA442D9FB9E400FE19D1;
 			packageReferences = (
 				E494AA7B2D9FC5A600FE19D1 /* XCRemoteSwiftPackageReference "SwiftLint" */,
-				E494AAA42D9FEEFB00FE19D1 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				E489391E2DA90C6300E3102A /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = E494AA4E2D9FB9E400FE19D1 /* Products */;
 			projectDirPath = "";
@@ -356,13 +365,16 @@
 				E494AAB22DA01EE200FE19D1 /* ImageLoader.swift in Sources */,
 				E494AA552D9FB9E400FE19D1 /* ViewController.swift in Sources */,
 				E48939132DA2B18400E3102A /* NetworkMonitor.swift in Sources */,
+				E48939242DA90D3B00E3102A /* NetworkService+location.swift in Sources */,
 				E494AA6A2D9FBD0600FE19D1 /* Fonts.swift in Sources */,
 				E48939092DA2522200E3102A /* String+.swift in Sources */,
 				E494AAAF2D9FEFBF00FE19D1 /* CharacterViewController.swift in Sources */,
 				E451C4472DA16A840035E536 /* CoreDataManager.swift in Sources */,
 				E494AA512D9FB9E400FE19D1 /* AppDelegate.swift in Sources */,
 				E494AA532D9FB9E400FE19D1 /* SceneDelegate.swift in Sources */,
+				E48939222DA90CA900E3102A /* NetworkService+episode.swift in Sources */,
 				E494AAB42DA0394400FE19D1 /* LocationData.swift in Sources */,
+				E48939262DA90D8500E3102A /* NetworkService+character.swift in Sources */,
 				E48939182DA2EAB100E3102A /* CoreDataManager+character.swift in Sources */,
 				E494AABA2DA0426600FE19D1 /* EpisodeResponseData.swift in Sources */,
 				E48939112DA2A8F400E3102A /* CoreDataMAnager+episode.swift in Sources */,
@@ -598,6 +610,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		E489391E2DA90C6300E3102A /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
 		E494AA762D9FC3CB00FE19D1 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/SwiftLint";
@@ -614,26 +634,18 @@
 				minimumVersion = 0.58.2;
 			};
 		};
-		E494AAA42D9FEEFB00FE19D1 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SnapKit/SnapKit";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.7.1;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E489391F2DA90C6300E3102A /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E489391E2DA90C6300E3102A /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
 		E494AA792D9FC40900FE19D1 /* SwiftLintBuildToolPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E494AA762D9FC3CB00FE19D1 /* XCRemoteSwiftPackageReference "SwiftLint" */;
 			productName = "plugin:SwiftLintBuildToolPlugin";
-		};
-		E494AAA52D9FEEFB00FE19D1 /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E494AAA42D9FEEFB00FE19D1 /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 
